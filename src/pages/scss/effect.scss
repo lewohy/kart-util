@@ -1,0 +1,5 @@
+@import 'color.scss';
+
+@mixin shadow-effect($elevation: 1) {
+    box-shadow: 0px calc(1px * #{$elevation}) calc(6px * #{$elevation}) rgba(0, 0, 0, 0.2);
+}

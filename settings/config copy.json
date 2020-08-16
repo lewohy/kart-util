@@ -1,0 +1,169 @@
+{
+    "keyViewer": {
+        "width": 360,
+        "height": 104,
+        "keyList": [
+            {
+                "name": "left-shift",
+                "code": 42,
+                "width": 96,
+                "height": 48,
+                "x": 0,
+                "y": 0,
+                "visible": true
+            },
+            {
+                "name": "right-shift",
+                "code": 54,
+                "width": 48,
+                "height": 48,
+                "x": 0,
+                "y": 0,
+                "visible": false
+            },
+            {
+                "name": "left-control",
+                "code": 29,
+                "width": 48,
+                "height": 48,
+                "x": 0,
+                "y": 56,
+                "visible": true
+            },
+            {
+                "name": "right-control",
+                "code": 157,
+                "width": 48,
+                "height": 48,
+                "x": 0,
+                "y": 0,
+                "visible": false
+            },
+            {
+                "name": "left-alt",
+                "code": 56,
+                "width": 48,
+                "height": 48,
+                "x": 104,
+                "y": 56,
+                "visible": true
+            },
+            {
+                "name": "right-alt",
+                "code": 184,
+                "width": 48,
+                "height": 48,
+                "x": 0,
+                "y": 0,
+                "visible": false
+            },
+            {
+                "name": "arrow-up",
+                "code": 200,
+                "width": 48,
+                "height": 48,
+                "x": 256,
+                "y": 0,
+                "visible": false
+            },
+            {
+                "name": "arrow-left",
+                "code": 203,
+                "width": 48,
+                "height": 48,
+                "x": 200,
+                "y": 56,
+                "visible": false
+            },
+            {
+                "name": "arrow-right",
+                "code": 205,
+                "width": 48,
+                "height": 48,
+                "x": 312,
+                "y": 56,
+                "visible": false
+            },
+            {
+                "name": "arrow-down",
+                "code": 208,
+                "width": 48,
+                "height": 48,
+                "x": 256,
+                "y": 56,
+                "visible": false
+            },
+            {
+                "name": "numpad-up",
+                "code": 72,
+                "width": 48,
+                "height": 48,
+                "x": 256,
+                "y": 0,
+                "visible": true
+            },
+            {
+                "name": "numpad-left",
+                "code": 75,
+                "width": 48,
+                "height": 48,
+                "x": 200,
+                "y": 56,
+                "visible": true
+            },
+            {
+                "name": "numpad-right",
+                "code": 77,
+                "width": 48,
+                "height": 48,
+                "x": 312,
+                "y": 56,
+                "visible": true
+            },
+            {
+                "name": "numpad-down",
+                "code": 80,
+                "width": 48,
+                "height": 48,
+                "x": 256,
+                "y": 56,
+                "visible": true
+            },
+            {
+                "name": "r",
+                "code": 19,
+                "width": 48,
+                "height": 48,
+                "x": 144,
+                "y": 0,
+                "visible": true
+            }
+        ]
+    },
+    "teamScoreViewer": {
+        "enabled": false,
+        "width": 200,
+        "height": 200
+    },
+    "keyTraceViewer": {
+        "enabled": false,
+        "width": 200,
+        "height": 200,
+        "keyList": [
+            {
+                "name": "left-control",
+                "code": 29,
+                "x": 0,
+                "width": 48,
+                "height": 16
+            },
+            {
+                "name": "left-shift",
+                "code": 42,
+                "x": 54,
+                "width": 96,
+                "height": 16
+            }
+        ]
+    }
+}

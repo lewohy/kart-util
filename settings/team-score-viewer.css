@@ -1,0 +1,60 @@
+.ranking-item {
+    width: 200px;
+    height: 25px;
+    display: flex;
+}
+
+.rank-view {
+    width: 20px;
+    margin: 0px 10px;
+    text-align: center;
+    float: left;
+    position: relative;
+}
+
+.blue-score-view, .red-score-view {
+    width: 80px;
+    float: left;
+    position: relative;
+}
+
+.blue-score-view {
+    text-align: right;
+}
+
+.red-score-view {
+    text-align: left;
+}
+
+.blue-score-view::after, .red-score-view::after {
+    content: "";
+    width: 80px;
+    height: 25px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    position: absolute;
+}
+
+.blue-score-view::after, .red-score-view::after {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.blue-score-view::after {
+    background: linear-gradient(90deg, rgba(180, 180, 255, 1), rgba(0, 0, 0, 0));
+}
+
+.red-score-view::after {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 180, 180, 1));
+}
+
+.blue-win > .blue-score-view::after {
+    opacity: 1;
+}
+
+.red-win > .red-score-view::after {
+    opacity: 1;
+}

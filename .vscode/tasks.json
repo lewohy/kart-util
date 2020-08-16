@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [],
+			"label": "npm: start",
+			"detail": "electron ./src/main.js",
+			"group": "build"
+		},
+		{
+			"type": "npm",
+			"script": "'node-gyp rebuild'",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: node-gyp rebuild",
+			"detail": "node-gyp rebuild --target=9.1.2 --arch=x64 --dist-url=https://electronjs.org/headers --release"
+		},
+		{
+			"type": "npm",
+			"script": "'webpack --watch'",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: webpack --watch",
+			"detail": "webpack --watch"
+		},
+		{
+			"type": "npm",
+			"script": "'tsc build'",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: tsc build",
+			"detail": "tsc --p ./tsconfig-build.json"
+		},
+		{
+			"type": "shell",
+			"command": "npm start",
+			"group": "build",
+			"dependsOn": [
+				"npm: tsc build"
+			],
+			"label": "tsc build and start",
+			"problemMatcher": []
+		}
+	]
+}

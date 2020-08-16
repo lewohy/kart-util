@@ -1,0 +1,11 @@
+.horizontal-box {
+    width: 100%;
+    margin: 8px 0px;
+    align-items: center;
+    display: flex;
+
+}
+
+.horizontal-box > *:not(:first-child) {
+    margin-left: 16px !important;
+}
