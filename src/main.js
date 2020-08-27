@@ -54,10 +54,15 @@ var KeyViewerWindow = /** @class */ (function (_super) {
             webPreferences: {
                 nodeIntegration: true
             },
+            frame: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: '#00FFFFFF',
+            alwaysOnTop: true
         });
         this.browserWindow.loadURL(this.url);
-        //this.browserWindow.setMenu(null);
-        this.browserWindow.webContents.openDevTools();
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     };
     return KeyViewerWindow;
 }(Window));
@@ -75,8 +80,8 @@ var SettingWindow = /** @class */ (function (_super) {
             },
         });
         this.browserWindow.loadURL(this.url);
-        this.browserWindow.webContents.openDevTools();
-        //this.browserWindow.setMenu(null);
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     };
     return SettingWindow;
 }(Window));
@@ -116,10 +121,15 @@ var KeyTraceViewerWindow = /** @class */ (function (_super) {
             webPreferences: {
                 nodeIntegration: true
             },
+            frame: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: '#00FFFFFF',
+            alwaysOnTop: true
         });
         this.browserWindow.loadURL(this.url);
-        this.browserWindow.webContents.openDevTools();
-        //this.browserWindow.setMenu(null);
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     };
     return KeyTraceViewerWindow;
 }(Window));
@@ -146,19 +156,21 @@ var KeyTraceViewerWindow = /** @class */ (function (_super) {
             windows.keyTraceViewer.browserWindow.webContents.send('refresh-config');
         }
     }).on('open-key-viewer', function () {
-        if (!windows.keyViewer) {
-            windows.keyViewer = new KeyViewerWindow();
-            windows.keyViewer.onClose = function () {
-                windows.keyViewer = null;
-            };
-        }
+        //if (!windows.keyViewer) {
+        //    windows.keyViewer = new KeyViewerWindow();
+        //    windows.keyViewer.onClose = () => {
+        //        windows.keyViewer = null;
+        //    };
+        //}
+    }).on('close-key-viewer', function () {
+        electron_1.app.quit();
     }).on('move-key-viewer', function (event, movementX, movementY) {
         var position = windows.keyViewer.browserWindow.getPosition();
         windows.keyViewer.browserWindow.setPosition(position[0] + movementX, position[1] + movementY);
     }).on('resize-key-viewer', function (event, width, height) {
         windows.keyViewer.browserWindow.resizable = true;
         windows.keyViewer.browserWindow.setSize(width, height);
-        //windows.keyViewer.browserWindow.resizable = false;
+        windows.keyViewer.browserWindow.resizable = false;
     }).on('open-setting', function () {
         if (!windows.setting) {
             windows.setting = new SettingWindow();
@@ -197,9 +209,22 @@ var KeyTraceViewerWindow = /** @class */ (function (_super) {
         if (windows.keyTraceViewer) {
             windows.keyTraceViewer.browserWindow.close();
         }
+    }).on('move-key-trace-viewer', function (event, movementX, movementY) {
+        var position = windows.keyTraceViewer.browserWindow.getPosition();
+        windows.keyTraceViewer.browserWindow.setPosition(position[0] + movementX, position[1] + movementY);
+    }).on('resize-key-trace-viewer', function (event, width, height) {
+        if (windows.keyTraceViewer) {
+            windows.keyTraceViewer.browserWindow.resizable = true;
+            windows.keyTraceViewer.browserWindow.setSize(width, height);
+            windows.keyTraceViewer.browserWindow.resizable = false;
+        }
     });
     electron_1.app.on('ready', function () {
         windows.keyViewer = new KeyViewerWindow();
+        windows.keyViewer.onClose = function () {
+            windows.keyViewer = null;
+            electron_1.app.quit();
+        };
     }).on('window-all-closed', function () {
         if (process.platform !== 'darwin') {
             electron_1.app.quit();

@@ -20,7 +20,6 @@ export class Keyboard {
             
             for (let i = 0; i < Keyboard.keyCallbackList.length; i++) {
                 Keyboard.keyCallbackList[i][keyCode].forEach(e => e(keyState));
-                console.log(Keyboard.keyCallbackList);
             }
         });
     }

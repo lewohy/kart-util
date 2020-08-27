@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Config, KeyInfo } from '../../ts/config';
+import { Config, KeyInfo, TraceKeyInfo } from '../../ts/config';
 import { ipcRenderer } from 'electron';
 import { Tabs, Tab, Box } from '@material-ui/core';
 import KeyViewerSetting from '../../components/KeyViewerSetting';
@@ -24,13 +24,28 @@ export default function Setting(props: Readonly<{}>) {
         config.save();
     };
 
+    let onKeyInfoChanged = (index: number, keyInfo: KeyInfo) => {
+        config.keyViewer.keyList[index] = keyInfo;
+        config.save();
+    };
+
     let onKeyInfoDeleteButtonClicked = (index: number) => {
         config.keyViewer.keyList.splice(index, 1);
         config.save();
     };
 
-    let onKeyInfoChanged = (index: number, keyInfo: KeyInfo) => {
-        config.keyViewer.keyList[index] = keyInfo;
+    let onTraceKeyInfoAdded = (keyInfo: TraceKeyInfo) => {
+        config.keyTraceViewer.keyList.push(keyInfo);
+        config.save();
+    };
+
+    let onTraceKeyInfoChanged = (index: number, keyInfo: TraceKeyInfo) => {
+        config.keyTraceViewer.keyList[index] = keyInfo;
+        config.save();
+    };
+
+    let onTraceKeyInfoDeleteButtonClicked = (index: number) => {
+        config.keyTraceViewer.keyList.splice(index, 1);
         config.save();
     };
 
@@ -65,8 +80,8 @@ export default function Setting(props: Readonly<{}>) {
                 <KeyViewerSetting
                     keyViewer={ config.keyViewer }
                     onKeyInfoAdded={ onKeyInfoAdded }
-                    onKeyInfoDeleteButtonClicked={ onKeyInfoDeleteButtonClicked }
                     onKeyInfoChanged={ onKeyInfoChanged }
+                    onKeyInfoDeleteButtonClicked={ onKeyInfoDeleteButtonClicked }
                     onKeyViewerWidthChanged={ (width: number) => { config.keyViewer.width = width; config.save(); } }
                     onKeyViewerHeightChanged={ (height: number) => { config.keyViewer.height = height; config.save(); } } />
 
@@ -78,7 +93,13 @@ export default function Setting(props: Readonly<{}>) {
 
                 <KeyTraceViewerSetting
                     keyTraceViewer={ config.keyTraceViewer }
-                    />
+                    onKeyTraceViewerEnableChanged={ (enabled: boolean) => { config.keyTraceViewer.enabled = enabled; config.save(); } }
+                    onKeyInfoAdded={ onTraceKeyInfoAdded }
+                    onKeyInfoChanged={ onTraceKeyInfoChanged }
+                    onKeyInfoDeleteButtonClicked={ onTraceKeyInfoDeleteButtonClicked }
+                    onKeyTraceViewerWidthChanged={(width: number) => { config.keyTraceViewer.width = width; config.save(); } }
+                    onKeyTraceViewerHeightChanged={(height: number) => { config.keyTraceViewer.height = height; config.save(); } }
+                    onKeyTraceViewerSpeedChanged={(speed: number) => { config.keyTraceViewer.speed = speed; config.save(); } } />
             </div>
 
             <div

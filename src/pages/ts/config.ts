@@ -103,12 +103,14 @@ export class KeyTraceViewer {
     public enabled: boolean;
     public width: number;
     public height: number;
+    public speed: number;
     public keyList: Array<TraceKeyInfo>;
 
     public constructor(json: KeyTraceViewerJSON) {
         this.enabled = json['enabled'];
         this.width = json['width'];
         this.height = json['height'];
+        this.speed = json['speed'];
         this.keyList = new Array<TraceKeyInfo>();
 
         for (let item of json['keyList']) {
@@ -124,12 +126,20 @@ export class TraceKeyInfo {
     public width: number;
     public height: number;
 
-    public constructor(json: TraceKeyInfoJSON) {
-        this.name = json['name'];
-        this.code = json['code'];
-        this.x = json['x'];
-        this.width = json['width'];
-        this.height = json['height'];
+    public constructor(json?: TraceKeyInfoJSON) {
+        if (json) {
+            this.name = json['name'];
+            this.code = json['code'];
+            this.x = json['x'];
+            this.width = json['width'];
+            this.height = json['height'];
+        } else {
+            this.name = 'name';
+            this.code = 0;
+            this.width = 0;
+            this.height = 0;
+            this.x = 0;
+        }
     }
 }
 

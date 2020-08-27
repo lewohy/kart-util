@@ -2,11 +2,13 @@ import React from 'react';
 import './style.scss';
 import { TraceKeyInfo } from '../../ts/config';
 import { Keyboard } from '../../ts/addon';
-import TraceView from './TraceView';
+import TraceFrame from './TraceFrame';
 
 type TraceKeyViewProp = {
     index: number;
     keyInfo: TraceKeyInfo;
+    height: number;
+    speed: number;
     tick: number;
 };
 
@@ -16,7 +18,6 @@ export default function TraceKeyView(props: Readonly<TraceKeyViewProp>) {
 
     let onKeyStateChanged = (keyState: number) => {
         setPressed(keyState === 128);
-        console.log(keyState);
     };
 
     React.useEffect(() => {
@@ -32,24 +33,27 @@ export default function TraceKeyView(props: Readonly<TraceKeyViewProp>) {
 
     return (
         <div
-            className="trace-key-view"
+            className={ `trace-key-view ${pressed ? 'trace-key-view-pressed' : ''}` }
             style={{
                 width: props.keyInfo.width,
                 height: '100%',
                 left: props.keyInfo.x
             }}>
 
-            <TraceView
+            <TraceFrame
                 style={{
                     width: '100%',
                     height: `calc(100% - ${props.keyInfo.height}px)`
                 }}
+                name={ props.keyInfo.name }
+                height={ props.height }
+                speed={ props.speed }
                 tick={ props.tick }
                 pressed={ pressed }/>
 
             <div
                 id={ props.keyInfo.name }
-                className="trace-key"
+                className={ `trace-key ${pressed ? 'trace-key-pressed' : ''}` }
                 style={{
                     width: '100%',
                     height: props.keyInfo.height

@@ -1,0 +1,73 @@
+.trace-key {
+    /*background-color: #ffdddd;*/
+    border: 1px solid gray;
+    box-sizing: border-box;
+}
+
+.trace-key-pressed {
+    background-color: rgba(120, 120, 120, 0.5);
+}
+
+.trace-frame {
+    /*background-color: #ddffdd;*/
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    box-sizing: border-box;
+}
+
+.trace {
+    background-color: rgba(120, 120, 240, 0.4);
+}
+
+#down-trace {
+    background-color: rgba(240, 120, 120, 0.4);
+}
+
+#control-trace {
+    background-color: rgba(255, 40, 40, 0.4);
+}
+
+.trace-key::after {
+    width: auto;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+}
+
+#control::after {
+    content: "CTRL";
+}
+
+#shift::after {
+    content: "SHIFT";
+}
+
+#alt::after {
+    content: "ALT";
+}
+#r::after {
+    content: "R";
+}
+
+#up::after {
+    content: "↑";
+}
+
+#left::after {
+    content: "←";
+}
+
+#right::after {
+    content: "→";
+}
+
+#down::after {
+    content: "↓";
+}

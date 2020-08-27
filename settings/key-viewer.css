@@ -2,20 +2,29 @@
     width: 24px;
     height: 24px;
     top: 0px;
+    right: 24px;
+    color: black;
+    position: fixed;
+}
+
+#exit-button {
+    width: 24px;
+    height: 24px;
+    top: 0px;
     right: 0px;
     color: black;
     position: fixed;
 }
 
-#left-shift::after {
+#left-shift::after, #right-shift::after {
     content: "SHIFT";
 }
 
-#left-alt::after {
+#left-alt::after, #right-alt::after {
     content: "ALT";
 }
 
-#left-control::after {
+#left-control::after, #right-control::after {
     content: "CTRL";
 }
 
@@ -23,19 +32,19 @@
     content: "R";
 }
 
-#numpad-up::after {
+#numpad-up::after, #arrow-up::after {
     content: "↑";
 }
 
-#numpad-left::after {
+#numpad-left::after, #arrow-left::after {
     content: "←";
 }
 
-#numpad-right::after {
+#numpad-right::after, #arrow-right::after {
     content: "→";
 }
 
-#numpad-down::after {
+#numpad-down::after, #arrow-down::after {
     content: "↓";
 }
 

@@ -1,40 +1,22 @@
 import React, { SyntheticEvent } from 'react';
 import './style.scss';
-import { KeyInfo } from '../../../ts/config';
+import { TraceKeyInfo } from '../../../ts/config';
 import { Remove, Delete, Clear } from '@material-ui/icons';
 import { Switch, IconButton } from '@material-ui/core';
 
-type KeyListViewItemProp = {
+type TraceKeyListViewItemProp = {
     index: number;
-    keyInfo: KeyInfo;
-    onKeyVisibleChanged: (index: number, keyInfo: KeyInfo) => void;
+    keyInfo: TraceKeyInfo;
     onKeyInfoDeleteButtonClicked: (index: number) => void;
-    onKeyInfoClicked: (index: number, keyInfo: KeyInfo) => void;
+    onKeyInfoClicked: (index: number, keyInfo: TraceKeyInfo) => void;
 };
 
-export default function KeyListViewItem(props: Readonly<KeyListViewItemProp>) {
+export default function TraceKeyListViewItem(props: Readonly<TraceKeyListViewItemProp>) {
     const [keyInfo, setKeyInfo] = React.useState(props.keyInfo);
 
     let onItemClick = (event: SyntheticEvent) => {
         props.onKeyInfoClicked(props.index, keyInfo);
     }
-
-    let onVisibleSwitchClick = (event: SyntheticEvent) => {
-        event.stopPropagation();
-
-        let newKeyInfo = new KeyInfo({
-            name: keyInfo.name,
-            code: keyInfo.code,
-            width: keyInfo.width,
-            height: keyInfo.height,
-            x: keyInfo.x,
-            y: keyInfo.y,
-            visible: !keyInfo.visible
-        });
-
-        setKeyInfo(newKeyInfo);
-        props.onKeyVisibleChanged(props.index, newKeyInfo);
-    };
 
     let onKeyInfoDeleteButtonClick = (event: SyntheticEvent) => {
         event.stopPropagation();
@@ -48,7 +30,7 @@ export default function KeyListViewItem(props: Readonly<KeyListViewItemProp>) {
 
     return (
         <div
-            className="key-list-view-item"
+            className="trace-key-list-view-item"
             onClick={ onItemClick }>
             
             <div
@@ -59,18 +41,9 @@ export default function KeyListViewItem(props: Readonly<KeyListViewItemProp>) {
             <div
                 className="right-area"
                 >
-                <Switch
-                    color="primary"
-                    
-                    checked={ keyInfo.visible }
-                    onClick={ onVisibleSwitchClick }
-                    style={{
-                        //color: '#aaaaff'
-                    }}
-                    />
 
                 <IconButton
-                    className="key-delete-button"
+                    className="trace-key-delete-button"
                     size="small"
                     onClick={ onKeyInfoDeleteButtonClick }>
                         <Clear/>

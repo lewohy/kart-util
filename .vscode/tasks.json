@@ -42,6 +42,22 @@
 			],
 			"label": "tsc build and start",
 			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "webpack",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: webpack",
+			"detail": "webpack"
+		},
+		{
+			"type": "npm",
+			"script": "build:win64",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build:win64",
+			"detail": "electron-builder --win --x64"
 		}
 	]
 }

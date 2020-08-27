@@ -1,22 +1,22 @@
 {
   "name": "kart-util",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/main.js",
   "scripts": {
     "start": "electron ./src/main.js",
     "node-gyp configure": "node-gyp configure",
     "node-gyp rebuild": "node-gyp rebuild --target=9.1.2 --arch=x64 --dist-url=https://electronjs.org/headers --release",
     "webpack": "webpack",
     "webpack --watch": "webpack --watch",
-    "tsc build": "tsc -p ./tsconfig-build.json"
+    "tsc build": "tsc -p ./tsconfig-build.json",
+    "build:win64": "electron-builder --win --x64"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "electron": "^9.1.2",
     "fontsource-roboto": "^3.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -30,6 +30,7 @@
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
+    "electron": "^9.2.1",
     "electron-builder": "^22.8.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
@@ -44,5 +45,33 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "build": {
+    "productName": "kart-util",
+    "appId": "com.lewohy.kartutil",
+    "asar": true,
+    "protocols": {
+      "name": "kart-util",
+      "schemes": [
+        "kart-util"
+      ]
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "./src/main.js",
+      "./src/pages/key-viewer.html",
+      "./src/pages/setting.html",
+      "./src/pages/team-score-viewer.html",
+      "./src/pages/key-trace-viewer.html",
+      "./src/pages/dist/key-viewer.bundle.js",
+      "./src/pages/dist/setting.bundle.js",
+      "./src/pages/dist/team-score-viewer.bundle.js",
+      "./src/pages/dist/key-trace-viewer.bundle.js"
+    ],
+    "directories": {
+      "output": "build-output/"
+    }
   }
 }

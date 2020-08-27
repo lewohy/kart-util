@@ -147,8 +147,9 @@
     },
     "keyTraceViewer": {
         "enabled": false,
-        "width": 200,
-        "height": 200,
+        "width": 366,
+        "height": 500,
+        "speed": 4,
         "keyList": [
             {
                 "name": "left-control",
@@ -162,6 +163,34 @@
                 "code": 42,
                 "x": 54,
                 "width": 96,
+                "height": 16
+            },
+            {
+                "name": "left-alt",
+                "code": 56,
+                "x": 156,
+                "width": 48,
+                "height": 16
+            },
+            {
+                "name": "numpad-left",
+                "code": 75,
+                "x": 210,
+                "width": 48,
+                "height": 16
+            },
+            {
+                "name": "numpad-up",
+                "code": 72,
+                "x": 264,
+                "width": 48,
+                "height": 16
+            },
+            {
+                "name": "numpad-right",
+                "code": 77,
+                "x": 318,
+                "width": 48,
                 "height": 16
             }
         ]

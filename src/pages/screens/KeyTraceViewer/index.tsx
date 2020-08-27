@@ -38,6 +38,8 @@ export default function KeyTraceViewer(props: Readonly<{}>) {
                             key={ index }
                             index={ index }
                             keyInfo={ e }
+                            height={ config.keyTraceViewer.height }
+                            speed={ config.keyTraceViewer.speed }
                             tick={ tick }/>
                     );
                 })

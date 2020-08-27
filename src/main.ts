@@ -42,16 +42,16 @@ class KeyViewerWindow extends Window {
             webPreferences: {
                 nodeIntegration: true
             },
-            //frame: false,
-            //resizable: false,
-            //transparent: true,
-            //backgroundColor: '#00FFFFFF',
-            //alwaysOnTop: true
+            frame: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: '#00FFFFFF',
+            alwaysOnTop: true
         });
 
         this.browserWindow.loadURL(this.url);
-        //this.browserWindow.setMenu(null);
-        this.browserWindow.webContents.openDevTools();
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     }
 }
 
@@ -75,8 +75,8 @@ class SettingWindow extends Window {
         });
 
         this.browserWindow.loadURL(this.url);
-        this.browserWindow.webContents.openDevTools();
-        //this.browserWindow.setMenu(null);
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     }
 }
 
@@ -117,16 +117,16 @@ class KeyTraceViewerWindow extends Window {
             webPreferences: {
                 nodeIntegration: true
             },
-            //frame: false,
-            //resizable: false,
-            //transparent: true,
-            //backgroundColor: '#00FFFFFF',
-            //alwaysOnTop: true
+            frame: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: '#00FFFFFF',
+            alwaysOnTop: true
         });
 
         this.browserWindow.loadURL(this.url);
-        this.browserWindow.webContents.openDevTools();
-        //this.browserWindow.setMenu(null);
+        //this.browserWindow.webContents.openDevTools();
+        this.browserWindow.setMenu(null);
     }
 }
 
@@ -162,19 +162,21 @@ class KeyTraceViewerWindow extends Window {
             windows.keyTraceViewer.browserWindow.webContents.send('refresh-config');
         }
     }).on('open-key-viewer', () => {
-        if (!windows.keyViewer) {
-            windows.keyViewer = new KeyViewerWindow();
-            windows.keyViewer.onClose = () => {
-                windows.keyViewer = null;
-            };
-        }
+        //if (!windows.keyViewer) {
+        //    windows.keyViewer = new KeyViewerWindow();
+        //    windows.keyViewer.onClose = () => {
+        //        windows.keyViewer = null;
+        //    };
+        //}
+    }).on('close-key-viewer', () => {
+        app.quit();
     }).on('move-key-viewer', (event, movementX: number, movementY: number) => {
         let position = windows.keyViewer.browserWindow.getPosition();
         windows.keyViewer.browserWindow.setPosition(position[0] + movementX, position[1] + movementY);
     }).on('resize-key-viewer', (event, width: number, height: number) => {
         windows.keyViewer.browserWindow.resizable = true;
         windows.keyViewer.browserWindow.setSize(width, height);
-        //windows.keyViewer.browserWindow.resizable = false;
+        windows.keyViewer.browserWindow.resizable = false;
     }).on('open-setting', () => {
         if (!windows.setting) {
             windows.setting = new SettingWindow();
@@ -213,10 +215,23 @@ class KeyTraceViewerWindow extends Window {
         if (windows.keyTraceViewer) {
             windows.keyTraceViewer.browserWindow.close();
         }
+    }).on('move-key-trace-viewer', (event, movementX: number, movementY: number) => {
+        let position = windows.keyTraceViewer.browserWindow.getPosition();
+        windows.keyTraceViewer.browserWindow.setPosition(position[0] + movementX, position[1] + movementY);
+    }).on('resize-key-trace-viewer', (event, width: number, height: number) => {
+        if (windows.keyTraceViewer) {
+            windows.keyTraceViewer.browserWindow.resizable = true;
+            windows.keyTraceViewer.browserWindow.setSize(width, height);
+            windows.keyTraceViewer.browserWindow.resizable = false;
+        }
     });
 
     app.on('ready', () => {
         windows.keyViewer = new KeyViewerWindow();
+        windows.keyViewer.onClose = () => {
+            windows.keyViewer = null;
+            app.quit();
+        };
     }).on('window-all-closed', () => {
         if (process.platform !== 'darwin') {
             app.quit();

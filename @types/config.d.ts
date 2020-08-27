@@ -33,6 +33,7 @@ declare type KeyTraceViewerJSON = {
     enabled: boolean;
     width: number;
     height: number;
+    speed: number;
     keyList: Array<TraceKeyInfoJSON>;
 };
 

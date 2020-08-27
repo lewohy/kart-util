@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         'key-viewer': [ './src/pages/ts/key-viewer.tsx', './src/pages/scss/key-viewer.scss' ],
         'key-trace-viewer': [ './src/pages/ts/key-trace-viewer.tsx', './src/pages/scss/key-trace-viewer.scss' ],

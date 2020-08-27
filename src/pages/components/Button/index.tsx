@@ -30,7 +30,8 @@ export default function Button(props: Readonly<ButtonProp>) {
                 marginLeft: props.x,
                 borderRadius: props.radius ?? 4
             }}
-            onClick={ props.onClick }>
+            onClick={ props.onClick }
+            onMouseMove= { e => {e.preventDefault()} }>
 
             {
                 props.text ?? ''

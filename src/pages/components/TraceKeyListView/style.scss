@@ -1,0 +1,16 @@
+.trace-key-list-view {
+    height: auto;
+
+    .trace-key-list-view::-webkit-scrollbar {
+        display: none;
+    }
+
+    .trace-key-list-scroll-area {
+        height: 256px;
+        overflow-y: scroll;
+    }
+
+    .trace-key-list-scroll-area::-webkit-scrollbar {
+        display: none;
+    }
+}
